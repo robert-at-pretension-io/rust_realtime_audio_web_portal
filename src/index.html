@@ -70,9 +70,24 @@ class AudioTest {
                     // Only send if there's actual sound (not silence)
                     const hasSound = audioData.some(sample => Math.abs(sample) > 0.01);
                     if (hasSound) {
+                        // Convert Float32Array to Int16Array for PCM16 format
+                        const pcm16Data = new Int16Array(audioData.length);
+                        for (let i = 0; i < audioData.length; i++) {
+                            // Convert float32 [-1.0, 1.0] to int16 [-32768, 32767]
+                            const s = Math.max(-1, Math.min(1, audioData[i]));
+                            pcm16Data[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+                        }
+                        
+                        // Convert to base64
+                        const buffer = new ArrayBuffer(pcm16Data.length * 2);
+                        new Int16Array(buffer).set(pcm16Data);
+                        const base64Audio = btoa(
+                            String.fromCharCode.apply(null, new Uint8Array(buffer))
+                        );
+                        
                         const message = {
                             type: "input_audio_buffer.append",
-                            audio: btoa(String.fromCharCode.apply(null, new Float32Array(audioData)))
+                            audio: base64Audio
                         };
                         this.ws.send(JSON.stringify(message));
                         this.logMessage(`→ Sent audio chunk (level: ${average.toFixed(2)})`);
