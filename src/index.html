@@ -8,6 +8,7 @@
     <button id="stopBtn" disabled>Stop</button>
     <pre id="log"></pre>
 
+<script src="vad.js"></script>
 <script>
 class AudioTest {
     constructor() {
@@ -18,6 +19,11 @@ class AudioTest {
         this.startBtn = document.getElementById('startBtn');
         this.stopBtn = document.getElementById('stopBtn');
         this.log = document.getElementById('log');
+        this.vad = new VoiceActivityDetector({
+            threshold: 0.01,
+            minVoiceFrames: 3,
+            minSilenceFrames: 10
+        });
     }
 
     logMessage(msg) {
@@ -85,14 +91,15 @@ class AudioTest {
                 if (this.ws.readyState === WebSocket.OPEN) {
                     const audioData = e.inputBuffer.getChannelData(0);
                     
-                    // Check audio levels
+                    // Use VAD to detect voice activity
+                    const isVoiceActive = this.vad.process(audioData);
+                    
+                    // Get audio levels for logging
                     const array = new Uint8Array(this.analyser.frequencyBinCount);
                     this.analyser.getByteFrequencyData(array);
                     const average = array.reduce((a, b) => a + b) / array.length;
                     
-                    // Only send if there's actual sound (not silence)
-                    const hasSound = audioData.some(sample => Math.abs(sample) > 0.01);
-                    if (hasSound) {
+                    if (isVoiceActive) {
                         // Convert Float32Array to Int16Array for PCM16 format
                         const pcm16Data = new Int16Array(audioData.length);
                         for (let i = 0; i < audioData.length; i++) {
