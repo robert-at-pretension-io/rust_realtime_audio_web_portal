@@ -1,11 +1,19 @@
 use futures::{SinkExt, StreamExt};
-use http::{Request, Uri};
+use http::Request;
+use base64::{engine::general_purpose::STANDARD, Engine};
+use rand::Rng;
 use serde_json::json;
 use std::env;
 use tokio_tungstenite::connect_async;
 use tokio_tungstenite::tungstenite::Message as TungsteniteMessage;
 use warp::ws::{Message as WarpMessage, WebSocket, Ws};
 use warp::Filter;
+
+fn generate_key() -> String {
+    let mut key = [0u8; 16];
+    rand::Rng::fill(&mut rand::thread_rng(), &mut key);
+    STANDARD.encode(key)
+}
 
 async fn handle_browser_client(browser_ws: WebSocket) {
     println!("Browser connected!");
@@ -18,6 +26,10 @@ async fn handle_browser_client(browser_ws: WebSocket) {
         .uri(url)
         .header("Authorization", format!("Bearer {}", openai_key))
         .header("OpenAI-Beta", "realtime=v1")
+        .header("Sec-WebSocket-Key", generate_key())
+        .header("Sec-WebSocket-Version", "13")
+        .header("Connection", "Upgrade")
+        .header("Upgrade", "websocket")
         .body(())
         .expect("Failed to build request");
 
