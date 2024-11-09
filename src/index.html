@@ -206,14 +206,26 @@ class AudioTest {
 
     sendEndOfTurn() {
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-            const message = {
-                type: "input_audio_buffer.end_of_turn"
+            // First commit the audio buffer
+            const commitMessage = {
+                type: "input_audio_buffer.commit"
             };
-            this.ws.send(JSON.stringify(message));
+            this.ws.send(JSON.stringify(commitMessage));
             this.logMessage({
                 direction: '→',
                 type: 'control',
-                data: message
+                data: commitMessage
+            });
+
+            // Then create a response
+            const responseMessage = {
+                type: "response.create"
+            };
+            this.ws.send(JSON.stringify(responseMessage));
+            this.logMessage({
+                direction: '→',
+                type: 'control',
+                data: responseMessage
             });
         }
     }
