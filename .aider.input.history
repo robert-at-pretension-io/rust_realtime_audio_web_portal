@@ -270,3 +270,63 @@
 
 # 2024-11-09 12:19:56.841914
 +/git add .
+
+# 2024-11-09 12:20:01.197872
++/git commit -m "removed twilio"
+
+# 2024-11-09 12:20:02.639961
++/git push
+
+# 2024-11-09 12:20:11.919475
++/add output/*
+
+# 2024-11-09 12:20:15.355387
++/add src/*
+
+# 2024-11-09 12:20:51.998810
++Log the browser logging... I'd like to print the totality of objects sent/received BUT truncate the long outputs (over 100 characters)
+
+# 2024-11-09 12:21:16.132142
++N
+
+# 2024-11-09 12:21:20.852584
++/run cargo run
+
+# 2024-11-09 12:21:52.128627
++n
+
+# 2024-11-09 12:22:31.135557
++There's too much spam from the browser, implement separate functionality for webrtc VAD detection on the frontend.
+
+# 2024-11-09 12:23:24.042668
++N
+
+# 2024-11-09 12:23:28.017362
++/run cargo run
+
+# 2024-11-09 12:24:02.922635
++n
+
+# 2024-11-09 12:24:04.142300
++/undo
+
+# 2024-11-09 12:24:15.010153
++/run rm src/vad.js
+
+# 2024-11-09 12:24:16.387332
++n
+
+# 2024-11-09 12:24:18.841407
++/ls -la
+
+# 2024-11-09 12:24:26.767066
++/drop src/vad.js
+
+# 2024-11-09 12:24:48.233105
++Don't concatenate the OBJECTS, just the long property values within the objects
+
+# 2024-11-09 12:25:06.026389
++N
+
+# 2024-11-09 12:30:16.541302
++/git add .
