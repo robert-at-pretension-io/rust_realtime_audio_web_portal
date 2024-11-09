@@ -1,4 +1,5 @@
 use futures::{SinkExt, StreamExt};
+use http::{Request, Uri};
 use serde_json::json;
 use std::env;
 use tokio_tungstenite::connect_async;
@@ -13,15 +14,16 @@ async fn handle_browser_client(browser_ws: WebSocket) {
     let openai_key = env::var("OPENAI_API_KEY").expect("OPENAI_API_KEY must be set");
     let url = "wss://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview-2024-10-01";
     
-    let ws_stream = connect_async(
-        url.to_string(),
-        Some(vec![
-            format!("Authorization: Bearer {}", openai_key),
-            "OpenAI-Beta: realtime=v1".to_string(),
-        ])
-    )
-    .await
-    .expect("Failed to connect to OpenAI");
+    let request = Request::builder()
+        .uri(url)
+        .header("Authorization", format!("Bearer {}", openai_key))
+        .header("OpenAI-Beta", "realtime=v1")
+        .body(())
+        .expect("Failed to build request");
+
+    let ws_stream = connect_async(request)
+        .await
+        .expect("Failed to connect to OpenAI");
     println!("Connected to OpenAI!");
 
     let (mut openai_write, mut openai_read) = ws_stream.0.split();
