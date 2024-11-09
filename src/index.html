@@ -36,6 +36,8 @@ class AudioTest {
         this.stopBtn = document.getElementById('stopBtn');
         this.log = document.getElementById('log');
         this.simpleVad = new SimpleVAD();
+        this.silenceStart = null;
+        this.silenceThreshold = 1000; // 1 second of silence to trigger end of turn
     }
 
     logMessage(msg) {
@@ -124,6 +126,18 @@ class AudioTest {
                     this.analyser.getByteFrequencyData(array);
                     const average = array.reduce((a, b) => a + b) / array.length;
                     
+                    // Handle silence detection
+                    if (!isVoiceActive) {
+                        if (this.silenceStart === null) {
+                            this.silenceStart = Date.now();
+                        } else if (Date.now() - this.silenceStart > this.silenceThreshold) {
+                            this.sendEndOfTurn();
+                            this.silenceStart = null;
+                        }
+                    } else {
+                        this.silenceStart = null;
+                    }
+                    
                     if (isVoiceActive) {
                         // Convert Float32Array to Int16Array for PCM16 format
                         const pcm16Data = new Int16Array(audioData.length);
@@ -188,6 +202,20 @@ class AudioTest {
         
         this.startBtn.disabled = false;
         this.stopBtn.disabled = true;
+    }
+
+    sendEndOfTurn() {
+        if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+            const message = {
+                type: "input_audio_buffer.end_of_turn"
+            };
+            this.ws.send(JSON.stringify(message));
+            this.logMessage({
+                direction: '→',
+                type: 'control',
+                data: message
+            });
+        }
     }
 }
 
