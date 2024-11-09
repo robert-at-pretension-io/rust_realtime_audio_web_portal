@@ -1,0 +1,6 @@
+[package]
+name = "rust_realtime_audio_web_portal"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
