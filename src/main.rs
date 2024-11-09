@@ -1,7 +1,7 @@
 use futures::{SinkExt, StreamExt};
 use http::Request;
-use base64::{engine::general_purpose::STANDARD, Engine};
-use rand::thread_rng;
+use base64;
+use rand::{Rng, thread_rng};
 use serde_json::json;
 use std::env;
 use tokio_tungstenite::connect_async;
@@ -10,10 +10,9 @@ use warp::ws::{Message as WarpMessage, WebSocket, Ws};
 use warp::Filter;
 
 fn generate_key() -> String {
-    use base64::{engine::general_purpose::STANDARD, Engine};
     let mut key = [0u8; 16];
-    thread_rng().fill(&mut key);
-    STANDARD.encode(key)
+    thread_rng().fill(&mut key[..]);
+    base64::Engine::encode(&base64::engine::general_purpose::STANDARD, key)
 }
 
 async fn handle_browser_client(browser_ws: WebSocket) {
