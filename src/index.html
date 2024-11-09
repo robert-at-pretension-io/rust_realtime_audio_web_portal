@@ -8,8 +8,24 @@
     <button id="stopBtn" disabled>Stop</button>
     <pre id="log"></pre>
 
-<script src="vad.js"></script>
 <script>
+// Simple energy-based voice activity detection
+class SimpleVAD {
+    constructor(threshold = 0.015) {
+        this.threshold = threshold;
+    }
+
+    // Simple energy-based voice detection
+    isVoiceActive(audioData) {
+        // Calculate RMS (Root Mean Square) energy
+        let sum = 0;
+        for (let i = 0; i < audioData.length; i++) {
+            sum += audioData[i] * audioData[i];
+        }
+        const rms = Math.sqrt(sum / audioData.length);
+        return rms > this.threshold;
+    }
+}
 class AudioTest {
     constructor() {
         this.ws = null;
@@ -19,17 +35,7 @@ class AudioTest {
         this.startBtn = document.getElementById('startBtn');
         this.stopBtn = document.getElementById('stopBtn');
         this.log = document.getElementById('log');
-        this.wasmVad = null;
-        
-        // Load WASM module
-        import("./pkg/wasm_vad.js").then(module => {
-            module.default().then(() => {
-                this.wasmVad = new module.WasmVad.new_with_rate_and_mode(24000, 0);
-                console.log("WebAssembly VAD module loaded");
-            });
-        }).catch(err => {
-            console.error("Failed to load WASM module:", err);
-        });
+        this.simpleVad = new SimpleVAD();
     }
 
     logMessage(msg) {
@@ -110,21 +116,8 @@ class AudioTest {
                 if (this.ws.readyState === WebSocket.OPEN) {
                     const audioData = e.inputBuffer.getChannelData(0);
                     
-                    // Convert Float32Array to Int16Array for VAD
-                    const samples = new Int16Array(audioData.length);
-                    for (let i = 0; i < audioData.length; i++) {
-                        samples[i] = Math.max(-1, Math.min(1, audioData[i])) * 0x7FFF;
-                    }
-                    
-                    // Process audio through WebAssembly VAD
-                    let isVoiceActive = false;
-                    if (this.wasmVad) {
-                        try {
-                            isVoiceActive = this.wasmVad.process_audio(samples);
-                        } catch (err) {
-                            console.error('VAD processing error:', err);
-                        }
-                    }
+                    // Check for voice activity using simple VAD
+                    const isVoiceActive = this.simpleVad.isVoiceActive(audioData);
                     
                     // Get audio levels for logging
                     const array = new Uint8Array(this.analyser.frequencyBinCount);
