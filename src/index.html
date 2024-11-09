@@ -30,17 +30,30 @@ class AudioTest {
         // For console, log the full message
         console.log(msg);
         
-        // For display, handle objects and truncate long strings
+        // For display, handle objects and truncate long string values
         let displayMsg;
         if (typeof msg === 'object') {
-            displayMsg = JSON.stringify(msg, null, 2);
+            // Deep clone to avoid modifying original
+            const processedMsg = JSON.parse(JSON.stringify(msg));
+            
+            // Recursively process object values
+            const truncateValues = (obj) => {
+                for (let key in obj) {
+                    if (typeof obj[key] === 'string' && obj[key].length > 100) {
+                        obj[key] = obj[key].substring(0, 97) + '...';
+                    } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+                        truncateValues(obj[key]);
+                    }
+                }
+            };
+            
+            truncateValues(processedMsg);
+            displayMsg = JSON.stringify(processedMsg, null, 2);
         } else {
             displayMsg = msg.toString();
-        }
-        
-        // Truncate if over 100 chars
-        if (displayMsg.length > 100) {
-            displayMsg = displayMsg.substring(0, 97) + '...';
+            if (displayMsg.length > 100) {
+                displayMsg = displayMsg.substring(0, 97) + '...';
+            }
         }
         
         this.log.textContent += displayMsg + '\n';
