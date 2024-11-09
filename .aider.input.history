@@ -330,3 +330,75 @@
 
 # 2024-11-09 12:30:16.541302
 +/git add .
+
+# 2024-11-09 12:30:25.473227
++/git commit -m "Added webrtc vad docs"
+
+# 2024-11-09 12:30:26.870639
++/git push
+
+# 2024-11-09 12:31:13.695993
++Please use the webrtc-vad.md guide and implement the rust code and the generated wasm module in the frontend to detect voices
+
+# 2024-11-09 12:32:38.735685
++/run mkdir wasm-vad
+
+# 2024-11-09 12:32:39.311696
++/run cd wasm-vad
+
+# 2024-11-09 12:32:39.797721
++/run cargo install wasm-pack
+
+# 2024-11-09 13:33:20.024150
++/run wasm-pack build --target web
+
+# 2024-11-09 13:33:22.088768
++/run mkdir -p src/pkg
+
+# 2024-11-09 13:33:22.725456
++/run cp -r pkg/* src/pkg/
+
+# 2024-11-09 13:33:23.244060
++/run python3 -m http.server 8080
+
+# 2024-11-09 15:58:22.194551
++n
+
+# 2024-11-09 15:58:29.658340
++/undo
+
+# 2024-11-09 15:58:56.641310
++/run cargo run
+
+# 2024-11-09 15:59:19.552126
++n
+
+# 2024-11-09 15:59:21.472361
++/run cargo run
+
+# 2024-11-09 16:00:15.289362
++Now audio doesn't seem to be picked up from the browser...
+
+# 2024-11-09 16:00:15.304132
++Now audio doesn't seem to be picked up from the browser...
+
+# 2024-11-09 16:00:45.902656
++/run cargo run
+
+# 2024-11-09 16:00:59.521858
++N
+
+# 2024-11-09 16:01:00.940905
++/undo
+
+# 2024-11-09 16:01:06.534682
++/chat-mode architect
+
+# 2024-11-09 16:01:25.956702
++/reset
+
+# 2024-11-09 16:01:35.289050
++/add src/*
+
+# 2024-11-09 16:01:36.934661
++/git add .
