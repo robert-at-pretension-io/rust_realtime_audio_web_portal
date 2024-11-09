@@ -402,3 +402,531 @@
 
 # 2024-11-09 16:01:36.934661
 +/git add .
+
+# 2024-11-09 16:01:41.649210
++/git commit -m "removed files"
+
+# 2024-11-09 16:01:43.550170
++/git push
+
+# 2024-11-09 16:02:09.658973
++Remove the vad from the index.html... Instead just use a plain js implementation of vad
+
+# 2024-11-09 16:02:52.789933
++/run cargo run
+
+# 2024-11-09 16:03:41.996094
++n
+
+# 2024-11-09 16:03:56.151353
++Ok, now it's sending data but it never seems to get openai responses back: Start Stop
++WebSocket connected
++{
++  "direction": "←",
++  "data": {
++    "type": "session.created",
++    "event_id": "event_ARmtnmOlcmSLkRGcs0jC0",
++    "session": {
++      "id": "sess_ARmtnWzFm2AHM9w82aIJf",
++      "object": "realtime.session",
++      "model": "gpt-4o-realtime-preview-2024-10-01",
++      "expires_at": 1731187087,
++      "modalities": [
++        "text",
++        "audio"
++      ],
++      "instructions": "Your knowledge cutoff is 2023-10. You are a helpful, witty, and friendly AI. Act like a human, bu...",
++      "voice": "alloy",
++      "turn_detection": {
++        "type": "server_vad",
++        "threshold": 0.5,
++        "prefix_padding_ms": 300,
++        "silence_duration_ms": 200
++      },
++      "input_audio_format": "pcm16",
++      "output_audio_format": "pcm16",
++      "input_audio_transcription": null,
++      "tool_choice": "auto",
++      "temperature": 0.8,
++      "max_response_output_tokens": "inf",
++      "tools": []
++    }
++  }
++}
++Got audio stream
++Audio processing started
++{
++  "direction": "←",
++  "data": {
++    "type": "session.updated",
++    "event_id": "event_ARmtoI0GKlUL5YAMh0kSX",
++    "session": {
++      "id": "sess_ARmtnWzFm2AHM9w82aIJf",
++      "object": "realtime.session",
++      "model": "gpt-4o-realtime-preview-2024-10-01",
++      "expires_at": 1731187087,
++      "modalities": [
++        "text",
++        "audio"
++      ],
++      "instructions": "You are a helpful assistant.",
++      "voice": "alloy",
++      "turn_detection": {
++        "type": "server_vad",
++        "threshold": 0.5,
++        "prefix_padding_ms": 300,
++        "silence_duration_ms": 200
++      },
++      "input_audio_format": "pcm16",
++      "output_audio_format": "pcm16",
++      "input_audio_transcription": null,
++      "tool_choice": "auto",
++      "temperature": 0.8,
++      "max_response_output_tokens": "inf",
++      "tools": []
++    }
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "67.38",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "qP/T/woARQB3AKAAwADSANgAzwDJAM4A2QDmAPkADQEfATIBRQFgAYIBnwG/AeEB+QH7AeYBwAGMAU8BDQHFAHAAFAC4/1z/A..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "66.78",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "NPsx+wv72frE+r/6w/ra+hX7YPua+/H7Xvyn/Nv8Bf0K/fz8Hf1I/Vj9Vf0+/Qv9qvxU/AT8mPtK+8365vkp+XD4OPfN9dfzr..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "61.84",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "uw2RDbgMqgu2ChEKCQqjCoMLVAyxDDcM9goNCZYGBwTTAQIApf7f/ZP9lv3s/Wr+vv68/jr+Kf2o++n5Mfjn9jb2PPb/9jP4h..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "59.05",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "hPqD+pD6qvrG+t362PrU+tT63frq+gT7Mftl+4T7j/uQ+137A/uQ+v/5ffkQ+c748vhr+Qn63/rK+5H8Uv37/W7+4f5X/8H/h..."
++  }
++}
++{
++  "direction": "←",
++  "data": {
++    "type": "input_audio_buffer.speech_started",
++    "event_id": "event_ARmtqC67N3gIVZc71VDJI",
++    "audio_start_ms": 64,
++    "item_id": "item_ARmtqiZyt4Z0fpWQSCeq1"
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "55.52",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "cNvb3eTh0eYH7VP0c/svAnAIpg0+EpgWqxofHzAk1yl+MMI3/D5kRo9NmFO3WM1cZV8yYeRiZGT0ZQZoaGqebBdufm5ybchq8..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "53.55",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "luM+5qbpj+168bn1K/pa/psC8QbxCgMPOhNMF4Ubzx/EI70nqisYL1gybTUOOKg6ST2XP+xBSERaRlFIH0p7S51Md031TUNOT..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "51.58",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "DOAf4FTgmODn4EbhlOHP4QXiIeI/4mjih+LG4h7jcePb417k0+Rg5f/ln+Zq51ToS+ls6qHrxOzo7fLuzO+Z8FLx8vGk8nXzV..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "50.49",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "XPEM77Tsqeq06MDmCuVq4+zhveCL31feeN253A/cidvx2lHax9ks2X/Y1Ncs13/Wu9UT1ZLU69P70qTR5M86zs3MRsstymDKD..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "45.96",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "3hFpEo8SZBIfEqgR4RDWD+AOCg5QDYkMrAvmCjYKfAl8CF4HZAaYBcUE8ANJA8wCWQLiAS0BTgCQ/8r+xv3L/Pf7NPuq+h76f..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "41.55",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "uPe297r3tPew97z3yffc9/r3D/go+Ez4Y/hz+H34g/iO+J34oviw+Mn43Pj0+A/5Ivk2+Uv5WPlm+X75lvmy+dn5/fkm+lP6f..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "41.02",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "AABGAEkAGAAXADwAGgDW/8D/4f/h/+7/KABiAGIAFgC9/2//LP/K/ov+qv7P/tn+Jv+7/0AAgQCjAI0ALwDF/4H/Vv9L/3z/x..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "38.60",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "fP0F/YP87/tU+8L6Ivp9+eT4Pfif9x33nPYY9q/1OfXG9Gn0BvSa8zLzwPJQ8vTxifEc8cLwaPAZ8OTvtO+W73vvWe9I71HvR..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "37.33",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "5P5z/gX+pP1D/eH8jfw5/N/7kfs7+9z6f/oY+qj5PPnV+HT4I/jc96T3e/dT9zT3G/f09sr2pfZ49kz2KfYB9t/1yfW29af1p..."
++  }
++}
++{
++  "direction": "←",
++  "data": {
++    "type": "input_audio_buffer.speech_stopped",
++    "event_id": "event_ARmtqhoEQXbw7b5lKCnr5",
++    "audio_end_ms": 864,
++    "item_id": "item_ARmtqiZyt4Z0fpWQSCeq1"
++  }
++}
++{
++  "direction": "←",
++  "data": {
++    "type": "input_audio_buffer.committed",
++    "event_id": "event_ARmtqt666PwSCrLrinCZg",
++    "previous_item_id": null,
++    "item_id": "item_ARmtqiZyt4Z0fpWQSCeq1"
++  }
++}
++{
++  "direction": "←",
++  "data": {
++    "type": "conversation.item.created",
++    "event_id": "event_ARmtqUYcE7jTPg1wWi5OY",
++    "previous_item_id": null,
++    "item": {
++      "id": "item_ARmtqiZyt4Z0fpWQSCeq1",
++      "object": "realtime.item",
++      "type": "message",
++      "status": "completed",
++      "role": "user",
++      "content": [
++        {
++          "type": "input_audio",
++          "transcript": null
++        }
++      ]
++    }
++  }
++}
++{
++  "direction": "←",
++  "data": {
++    "type": "response.created",
++    "event_id": "event_ARmtqkIm3J3Y9TMqB7Fri",
++    "response": {
++      "object": "realtime.response",
++      "id": "resp_ARmtqyYCUqPp5qKinj3QQ",
++      "status": "in_progress",
++      "status_details": null,
++      "output": [],
++      "usage": null
++    }
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "35.13",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "FAINAhMCBQLNAWMByAAOADz/a/7M/Xf9cP25/U/+F//x/60AKAFOARgBiQCq/5T+d/2B/Lj7Mvv/+gv7UPu5+xb8TPxk/Fj8H..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "32.30",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "BgMeBDwFXQaBB40IiQl0CjALxAtADKMM+Qw7DWcNng3gDRcOTA5/DqsO2w72DvoOAw8LDwcPCg8PDxgPMQ9JD1IPTA83Dw8Pw..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "36.59",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "9/pT+rr5Mvmc+AX4iff/9ln2sPXz9B30N/M28ijxJ/Aj7y/uYO2U7ODrXuvl6nrqM+r06cnpv+mw6a3pwem46avprumN6VTpI..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "38.82",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "nDhQN2s1ajMOMgExdy/XLW8sjyopKBgmPCSHIm0h+iBtIfMi4CTwJoopISwkLsYv2zDvMK4vcS1xKkgmXyFoHHcXqxL6DlEMV..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "35.45",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "aAMdA9oCegL7AYQBAgFfAMP/Gv9a/qv96vwU/FT7jfrT+U35ufgl+LT3N/eh9gX2VPWZ9ObzN/On8k/yAvLU8cfxkfE58c7wF..."
++  }
++}
++{
++  "direction": "←",
++  "data": {
++    "type": "input_audio_buffer.speech_started",
++    "event_id": "event_ARmtqI18Kwg1aV274qqo5",
++    "audio_start_ms": 1344,
++    "item_id": "item_ARmtqKxDPXuRoVvKm77AS"
++  }
++}
++{
++  "direction": "←",
++  "data": {
++    "type": "response.done",
++    "event_id": "event_ARmtqUvJzZ7wd4ehYA2aW",
++    "response": {
++      "object": "realtime.response",
++      "id": "resp_ARmtqyYCUqPp5qKinj3QQ",
++      "status": "cancelled",
++      "status_details": {
++        "type": "cancelled",
++        "reason": "turn_detected"
++      },
++      "output": [],
++      "usage": {
++        "total_tokens": 0,
++        "input_tokens": 0,
++        "output_tokens": 0,
++        "input_token_details": {
++          "text_tokens": 0,
++          "audio_tokens": 0,
++          "cached_tokens": 0,
++          "cached_tokens_details": {
++            "text_tokens": 0,
++            "audio_tokens": 0
++          }
++        },
++        "output_token_details": {
++          "text_tokens": 0,
++          "audio_tokens": 0
++        }
++      }
++    }
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "35.50",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "WO4C7q/tbu0p7e3sxeyV7HHsXexE7DXsOewz7DvsV+xl7Hbsk+yp7Mzs8OwN7Untn+3r7Ufuvu4377bvOPC18D/xyfFK8uLyg..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "37.16",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "OQxJDG4MkAyeDEkMaAtECt8ICAf2BOkC8AAi/3b9/fvg+t/5tPiE91T2AfWN8xry6/AY8HjvH+8v72PveO9v7yjvje6l7WjsD..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "38.93",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "AATDA8YDuQN1AyoD1wI9AloBaAB//4L+X/1K/Fb7a/qi+Rz5q/g6+PD3kPcS9672M/ax9VH12/RK9NnzgfMe86jyIvKt8T7xp..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "39.21",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "sv6w/rL+yP7L/qD+Zv4a/rz9af0S/Yr83vtg+/H6b/oZ+tL5ePlm+W75JPnC+Fb4o/fU9uj10/SQ9Kf1H/dn+I76n/6OA84HF..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "37.74",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "G/o6+ln6hvrT+jX7oPsF/Gn8z/xA/bP9EP5Y/qD++v5k/9j/WADQAD4BswEpAogCzQLzAusC2ALGApsCUAL4AYwBHgHCAGkAD..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "39.20",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "5wEFAiwCOAJKAoMCnwJ2AkkCTAJTAksCTgJZAlICPQIrAioCQgJWAjgCKgJYAogCmAKjAp0CcgJMAm8C2AIRA9QCaAIvAjcCT..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "38.42",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "dPxO/CL89fvI+6/7qPuW+3H7O/v7+tL6xvrD+rT6nfqB+mz6bfpz+n/6ivqJ+ob6hvp8+of6rvrP+s76wfq7+sH6z/rb+un68..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "34.95",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "TwWZBdoFHAZjBrwGIgeIB/AHTwijCOcIGAk3CUMJQQk2CSUJGQkNCQkJBQn8COwIxAiICDcI2gd9ByIHwQZUBuoFgAUKBaYET..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "42.59",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "ov+D/2H/Ov8O/+T+vP6a/oL+cP5l/mD+Xf5Z/lX+Tf5C/jb+Jf4S/v/97f3d/df91P3W/df91v3R/cr9vv2y/av9qf2s/bb9v..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "42.03",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "cPsT+6j6OPq/+UH5xfhV+Pj3rvd+92b3b/eM96731/cB+Cr4TPhs+JT4uPjj+BX5UvmY+ef5PvqV+vX6Ufuu+xX8c/zU/EL9u..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "38.61",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "4Pu/+9r7FfxF/CL8Dfx2/L78Af0J/Tv9tv04/oX+uf7q/l7/0P8KADYAqAAXAS8BYwGaAZ8BWAEzASMB2wBIANX/h/8+/xD//..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "34.87",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "gAi4CM4IwwikCG4IFQikBy4HtgY5Br4FVAX/BLsEfgRTBD8ELgQQBPUD5gPCA4oDQwP2AqcCQQLCAUMBvwAoAIf/4v40/n79y..."
++  }
++}
++{
++  "direction": "→",
++  "type": "audio",
++  "level": "31.13",
++  "data": {
++    "type": "input_audio_buffer.append",
++    "audio": "3P7h/uj+7v72/gH/Dv8b/yr/Of9K/1//dP+L/6X/wP/b//j/EQArAEMAVQBjAHAAeAB+AIMAhgCLAJIAmwCoALkAyQDeAPQAC..."
++  }
++}
++WebSocket closed
+
+# 2024-11-09 16:05:01.031804
++/run cargo run
+
+# 2024-11-09 16:05:40.117960
++n
+
+# 2024-11-09 16:05:47.455032
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvnjbe0FxYstUs57CNr","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvoFXsDBr505KZ6V072","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvp5WoftV6tVoTQDOYq","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvqJnI0EdrnjuABbgHE","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvrIPObAqjlAVyLqXei","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvsmV5ZUHiyRQ6vyB6V","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvto0lD7wZApUCDU6KW","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvuZOpZdLbPPLYDFfED","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvwT6rwDYy4YSu8clDz","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvxibTVOiJQvtERKy3A","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvy0ac657GI7soK0KWb","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmvzFFUKWQcVUTyyVdIM","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmw0USbw3nEeeZyRUUWq","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmw1Y9RXpM65xHAfIs6h","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmw2URzVkOcPc2qyVv0Z","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++→ Browser to OpenAI: {"type":"input_audio_buffer.end_of_turn"}
++← OpenAI to Browser: {"type":"error","event_id":"event_ARmw3jrFzEgvTR5gJV2Z2","error":{"type":"invalid_request_error","code":"invalid_value","message":"Invalid value: 'inp...urn'. Supported values are: 'session.update', 'input_audio_buffer.append', 'input_audio_buffer.commit', 'input_audio_buffer.clear', 'conversation.item.create', 'conversation.item.truncate', 'conversation.item.delete', 'response.create', and 'response.cancel'.","param":"type","event_id":null}}
++^C
+
+# 2024-11-09 16:06:16.013558
++/run cargo run
+
+# 2024-11-09 16:08:21.180977
++n
+
+# 2024-11-09 16:08:34.479833
++/run rm output/webrtc-vad.md
+
+# 2024-11-09 16:08:36.044212
++n
+
+# 2024-11-09 16:08:38.182302
++/git add .
