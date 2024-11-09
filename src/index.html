@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenAI Audio Test</title>
+</head>
+<body>
+    <button id="startBtn">Start</button>
+    <button id="stopBtn" disabled>Stop</button>
+    <pre id="log"></pre>
+
+<script>
+class AudioTest {
+    constructor() {
+        this.ws = null;
+        this.stream = null;
+        this.audioContext = null;
+        this.processor = null;
+        this.startBtn = document.getElementById('startBtn');
+        this.stopBtn = document.getElementById('stopBtn');
+        this.log = document.getElementById('log');
+    }
+
+    logMessage(msg) {
+        console.log(msg);
+        this.log.textContent += msg + '\n';
+        this.log.scrollTop = this.log.scrollHeight;
+    }
+
+    async start() {
+        try {
+            // Connect WebSocket
+            this.ws = new WebSocket('ws://localhost:3000/ws');
+            this.ws.onmessage = (e) => this.logMessage('← Received: ' + e.data);
+            this.ws.onopen = () => this.logMessage('WebSocket connected');
+            this.ws.onclose = () => this.logMessage('WebSocket closed');
+            this.ws.onerror = (e) => this.logMessage('WebSocket error: ' + e);
+
+            // Get audio stream
+            this.stream = await navigator.mediaDevices.getUserMedia({
+                audio: {
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    autoGainControl: true
+                }
+            });
+            this.logMessage('Got audio stream');
+
+            // Setup audio processing
+            this.audioContext = new AudioContext();
+            const source = this.audioContext.createMediaStreamSource(this.stream);
+            this.processor = this.audioContext.createScriptProcessor(2048, 1, 1);
+            
+            this.processor.onaudioprocess = (e) => {
+                if (this.ws.readyState === WebSocket.OPEN) {
+                    const audioData = e.inputBuffer.getChannelData(0);
+                    const message = {
+                        type: "input_audio_buffer.append",
+                        audio: btoa(String.fromCharCode.apply(null, new Float32Array(audioData)))
+                    };
+                    this.ws.send(JSON.stringify(message));
+                    this.logMessage('→ Sent audio chunk');
+                }
+            };
+
+            source.connect(this.processor);
+            this.processor.connect(this.audioContext.destination);
+            
+            this.startBtn.disabled = true;
+            this.stopBtn.disabled = false;
+            this.logMessage('Audio processing started');
+
+        } catch (error) {
+            this.logMessage('Error: ' + error);
+        }
+    }
+
+    async stop() {
+        if (this.stream) {
+            this.stream.getTracks().forEach(track => track.stop());
+            this.logMessage('Audio tracks stopped');
+        }
+        if (this.processor) {
+            this.processor.disconnect();
+            this.logMessage('Processor disconnected');
+        }
+        if (this.audioContext) {
+            await this.audioContext.close();
+            this.logMessage('Audio context closed');
+        }
+        if (this.ws) {
+            this.ws.close();
+            this.logMessage('WebSocket closed');
+        }
+        
+        this.startBtn.disabled = false;
+        this.stopBtn.disabled = true;
+    }
+}
+
+const test = new AudioTest();
+startBtn.onclick = () => test.start();
+stopBtn.onclick = () => test.stop();
+</script>
+</body>
+</html>
