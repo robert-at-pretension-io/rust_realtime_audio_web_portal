@@ -2,7 +2,8 @@ use futures::{SinkExt, StreamExt};
 use serde_json::json;
 use std::env;
 use tokio_tungstenite::{connect_async, tungstenite};
-use warp::ws::{WebSocket, Ws};
+use tokio_tungstenite::tungstenite::Message as TungsteniteMessage;
+use warp::ws::{Message as WarpMessage, WebSocket, Ws};
 use warp::Filter;
 
 async fn handle_browser_client(browser_ws: WebSocket) {
@@ -30,7 +31,7 @@ async fn handle_browser_client(browser_ws: WebSocket) {
         }
     });
     openai_write
-        .send(Message::Text(init_msg.to_string()))
+        .send(TungsteniteMessage::Text(init_msg.to_string()))
         .await
         .expect("Failed to send init message");
     println!("Sent initialization message to OpenAI");
@@ -43,8 +44,8 @@ async fn handle_browser_client(browser_ws: WebSocket) {
                     println!("→ Browser to OpenAI: {}", browser_msg.to_str().unwrap_or("binary data"));
                     // Convert warp message to tungstenite message
                     let openai_msg = match browser_msg {
-                        warp::ws::Message::Text(t) => tungstenite::Message::Text(t),
-                        warp::ws::Message::Binary(b) => tungstenite::Message::Binary(b),
+                        WarpMessage::Text(t) => TungsteniteMessage::Text(t),
+                        WarpMessage::Binary(b) => TungsteniteMessage::Binary(b),
                         _ => continue,
                     };
                     if let Err(e) = openai_write.send(openai_msg).await {
@@ -68,8 +69,8 @@ async fn handle_browser_client(browser_ws: WebSocket) {
                 println!("← OpenAI to Browser: {}", openai_msg.to_string());
                 // Convert tungstenite message to warp message
                 let browser_msg = match openai_msg {
-                    tungstenite::Message::Text(t) => warp::ws::Message::text(t),
-                    tungstenite::Message::Binary(b) => warp::ws::Message::binary(b),
+                    TungsteniteMessage::Text(t) => WarpMessage::text(t),
+                    TungsteniteMessage::Binary(b) => WarpMessage::binary(b),
                     _ => continue,
                 };
                 if let Err(e) = browser_write.send(browser_msg).await {
