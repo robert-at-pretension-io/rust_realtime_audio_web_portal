@@ -21,8 +21,23 @@ class AudioTest {
     }
 
     logMessage(msg) {
+        // For console, log the full message
         console.log(msg);
-        this.log.textContent += msg + '\n';
+        
+        // For display, handle objects and truncate long strings
+        let displayMsg;
+        if (typeof msg === 'object') {
+            displayMsg = JSON.stringify(msg, null, 2);
+        } else {
+            displayMsg = msg.toString();
+        }
+        
+        // Truncate if over 100 chars
+        if (displayMsg.length > 100) {
+            displayMsg = displayMsg.substring(0, 97) + '...';
+        }
+        
+        this.log.textContent += displayMsg + '\n';
         this.log.scrollTop = this.log.scrollHeight;
     }
 
@@ -30,7 +45,15 @@ class AudioTest {
         try {
             // Connect WebSocket
             this.ws = new WebSocket('ws://localhost:3000/ws');
-            this.ws.onmessage = (e) => this.logMessage('← Received: ' + e.data);
+            this.ws.onmessage = (e) => {
+                let data;
+                try {
+                    data = JSON.parse(e.data);
+                    this.logMessage({direction: '←', data});
+                } catch {
+                    this.logMessage('← Received: ' + e.data);
+                }
+            };
             this.ws.onopen = () => this.logMessage('WebSocket connected');
             this.ws.onclose = () => this.logMessage('WebSocket closed');
             this.ws.onerror = (e) => this.logMessage('WebSocket error: ' + e);
@@ -89,8 +112,14 @@ class AudioTest {
                             type: "input_audio_buffer.append",
                             audio: base64Audio
                         };
-                        this.ws.send(JSON.stringify(message));
-                        this.logMessage(`→ Sent audio chunk (level: ${average.toFixed(2)})`);
+                        const msgStr = JSON.stringify(message);
+                        this.ws.send(msgStr);
+                        this.logMessage({
+                            direction: '→',
+                            type: 'audio',
+                            level: average.toFixed(2),
+                            data: message
+                        });
                     }
                 }
             };
